@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <?php
 session_start();
@@ -130,3 +131,10 @@ include('config.php');
 
 <!-- auth-login.html  21 Nov 2019 03:49:32 GMT -->
 </html>
+=======
+<?php
+
+include('./header.php');
+include('./searchbar.php');
+include('./footer.php');
+>>>>>>> 8c968fc734c1aa9349058f29accb6ca4f83a8cdb
