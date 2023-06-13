@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-	<title>Document</title>
+	<title>Registration Form</title>
 </head>
 
 <body>
@@ -43,19 +43,19 @@
 						<label for="floatingInput">Pin Code</label>
 					</div>
 					<div class="form-floating mb-3">
-						<input type="password" class="form-control" id="floatingPassword" name="password" required>
-						<label for="floatingPassword">Password</label>
+						<input type="password" class="form-control" name="password" required>
+						<label>Password</label>
 					</div>
 					<div class="form-floating mb-3">
-						<input type="password" class="form-control" id="floatingPassword" required>
-						<label for="floatingPassword">Confirm Password</label>
+						<input type="password" class="form-control" required>
+						<label>Confirm Password</label>
 					</div>
 
 					<div>
 						<h6>Already Customer <a href="./loginForm.php"> <strong class="text-primary text-decoration-none">Login</strong></a></h6>
 					</div>
 
-					<button class="btn btn-warning mt-3" name="register">Register</button>
+					<button class="btn btn-warning mt-3" name="register" type="submit">Register</button>
 
 				</form>
 
