@@ -7,7 +7,7 @@
 if (isset($_POST['register'])) {
 
 	$name = $_POST['name'];
-	// $username = $_POST['username'];
+
 	$landmark = $_POST['landmark'];
 	$mob = $_POST['mob'];
 	$email = $_POST['email'];
@@ -39,23 +39,30 @@ if (isset($_POST['login'])) {
 	$password = $_POST['password'];
 
 
-	$sql = "SELECT `contact`, `password` FROM `usermaster` WHERE `contact` = '$mob' AND `password` = '$password'";
+	$sql = "SELECT * FROM `usermaster` WHERE `contact` = '$mob'";
 	$result = mysqli_query($con, $sql);
 
 	if ($result) {
 
-		$rows = mysqli_fetch_assoc($result);
-		$_SESSION['username'] = $rows['username'];
-		$_SESSION['userid'] = $rows['userid'];
-		
-		echo "<script>
-			alert('Login Successful');
-			window.location.href='./header.php';
-			</script>";
+		if (mysqli_num_rows($result) > 0) {
+
+			$rows = mysqli_fetch_assoc($result);
+
+			$_SESSION['username'] = $rows['username'];
+			$_SESSION['userid'] = $rows['userid'];
+
+
+			echo "<script>
+				alert('Login Successful');
+				window.location.href='./header.php';
+				</script>";
+		} else {
+			echo mysqli_num_rows($result);
+		}
 	} else {
 		echo "<script>
-			alert('Credential Error');
-			// window.location.href='./loginForm.php';
-			</script>";
+		alert('Credential Error');
+		window.location.href='./loginForm.php';
+		</script>";
 	}
 }

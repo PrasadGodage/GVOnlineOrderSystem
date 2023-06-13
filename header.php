@@ -1,9 +1,7 @@
 <?php include('./Admin/config.php');
 
-
-if($_SESSION['username']=="")
-{
-  header("location:./index.php"); 
+if ($_SESSION['username'] == "") {
+  header("location:./loginForm.php");
 }
 
 
