@@ -33,15 +33,15 @@
 
 							<div style="display: flex; align-items:center; justify-content:end">
 								<div class="card-body">
-									<img src="./Admin/<?php echo $row['img']; ?>" height="80px" width="80px">
+									<img src="./Admin/<?php echo $row['itemimage']; ?>" height="80px" width="80px">
 								</div>
 								<div class="card-body">
-									<h5 class="card-title"><?php echo $row['name']; ?></h5>
+									<h5 class="card-title"><?php echo $row['itemname']; ?></h5>
 									<p class="card-text">Quantity: <?php echo $row['qun']; ?></p>
 								</div>
 								<div class="card-body">
 
-									<p class="card-text">Rs.<?php echo $row['price']; ?></p>
+									<p class="card-text">Rs.<?php echo $row['rate']; ?></p>
 								</div>
 
 							</div>
