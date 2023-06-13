@@ -39,7 +39,7 @@ if (isset($_POST['login'])) {
 	$password = $_POST['password'];
 
 
-	$sql = "SELECT * FROM `usermaster` WHERE `contact` = '$mob'";
+	$sql = "SELECT * FROM `usermaster` WHERE `contact` = '$mob' AND `password` = '$password'" ;
 	$result = mysqli_query($con, $sql);
 
 	if ($result) {
@@ -57,7 +57,7 @@ if (isset($_POST['login'])) {
 				window.location.href='./header.php';
 				</script>";
 		} else {
-			echo mysqli_num_rows($result);
+			echo mysqli_fetch_assoc($result);
 		}
 	} else {
 		echo "<script>
