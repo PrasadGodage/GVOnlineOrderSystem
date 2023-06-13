@@ -1,8 +1,8 @@
 <?php include('./Admin/config.php');
 
-if ($_SESSION['username'] == "") {
-  header("location:./loginForm.php");
-}
+// if ($_SESSION['username'] == "") {
+//   header("location:./loginForm.php");
+// }
 
 
 if (isset($_POST['add'])) {
@@ -12,7 +12,7 @@ if (isset($_POST['add'])) {
   $quantity = $_POST['quantity'];
 
 
-  $select = mysqli_query($con, "INSERT INTO `cart`( `name`, `qun`, `price`, `img`) VALUES ('$itemname','$quantity','$rate','$itemimage')");
+  $select = mysqli_query($con, "INSERT INTO `cart`( `name`, `qun`, `price`, `img`) VALUES ('$itemname','$quantity','$rate','$itemimage') WHERE `name` = '$itemname'");
 
   if ($select == true) {
 

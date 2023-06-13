@@ -44,15 +44,19 @@
 									<p class="card-text">Rs.<?php echo $row['rate']; ?></p>
 								</div>
 
+
+
 							</div>
 						</div>
 					</div>
+					
 			<?php
 				}
 			}
 
 			?>
 		</div>
+		<a href="checkout.php" class="btn btn-warning">Check Out</a>
 	</div>
 
 
