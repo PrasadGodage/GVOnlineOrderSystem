@@ -1,5 +1,12 @@
 <?php include('./Admin/config.php');
 
+
+if($_SESSION['username']=="")
+{
+  header("location:./index.php"); 
+}
+
+
 if (isset($_POST['add'])) {
   $itemname = $_POST['itemname'];
   $itemimage = $_POST['itemimage'];
