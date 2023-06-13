@@ -37,9 +37,10 @@ if (isset($_POST['register'])) {
 if (isset($_POST['login'])) {
 	$mob = $_POST['number'];
 	$password = $_POST['password'];
+	$encypass = md5($password);
 
 
-	$sql = "SELECT * FROM `usermaster` WHERE `contact` = '$mob' AND `password` = '$password'" ;
+	$sql = "SELECT * FROM `usermaster` WHERE `contact` = '$mob' AND `password` = '$encypass'";
 	$result = mysqli_query($con, $sql);
 
 	if ($result) {
