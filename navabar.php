@@ -1,3 +1,18 @@
+<?php
+error_reporting(0);
+session_start();
+include('./Admin/config.php');
+
+
+
+$userid = $_SESSION['userid'];
+echo $userid;
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,8 +21,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<style>
-		
-
 		.nav {
 			position: fixed;
 			bottom: 0;
@@ -17,7 +30,7 @@
 			background-color: #ffffff;
 			display: flex;
 			overflow-x: auto;
-			z-index: 1;
+			z-index: 2;
 		}
 
 		.nav__link {
@@ -52,13 +65,13 @@
 </head>
 
 <body>
-<?php include('./Admin/config.php'); 
+	<?php include('./Admin/config.php');
 
-$sql = mysqli_query($con,"SELECT * FROM `cart`") or die("query failed");
-$row_count = mysqli_num_rows($sql);
+	$sql = mysqli_query($con, "SELECT * FROM `cart` WHERE `userid` = '$userid'") or die("query failed");
+	$row_count = mysqli_num_rows($sql);
 
 
-?>
+	?>
 	<div class="container-fluid">
 		<!-- navbar  -->
 		<nav class="nav bg-warning">
@@ -73,7 +86,7 @@ $row_count = mysqli_num_rows($sql);
 			<a href="./mycart.php" class="nav__link">
 				<i class="material-icons nav__icon">shopping_cart</i>
 				<span class="nav__text">Cart <span class="ml-2"><?php echo $row_count; ?></span></span>
-				
+
 			</a>
 			<a href="#" class="nav__link">
 				<i class="material-icons nav__icon">person</i>

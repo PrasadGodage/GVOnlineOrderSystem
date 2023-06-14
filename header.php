@@ -1,6 +1,24 @@
-<?php include('./Admin/config.php');
+<?php 
+session_start();
+error_reporting(0);
+include('./Admin/config.php');
 
-if ($_SESSION['username'] == "") {
+
+$username = $_SESSION['username'];
+$landmark = $_SESSION['landmark'];
+$userid = $_SESSION['userid'];
+$address = $_SESSION['address'];
+$pincode = $_SESSION['pincode'];
+$name = $_SESSION['name'];
+
+echo $username;
+echo $landmark;
+echo $userid;
+echo $address;
+echo $pincode;
+echo $name;
+
+if (!isset($_SESSION['username'])) {
 
   header("location:./loginForm.php");
 }
@@ -14,9 +32,9 @@ if (isset($_POST['add'])) {
   $quantity = $_POST['quantity'];
   $currentDate = date('Y-m-d');
   $currentTime = time();
-  $userid = $_SESSION['userid'];
+  
 
-  $select = mysqli_query($con, "INSERT INTO `cart`(`orderdate`, `ordertime`, `userid`, `itemid`, `itemname`, `qun`, `rate`, `itemimage`) VALUES ('$currentDate','$currentTime','$userid','$itemid','$itemname','$quantity','$rate','$itemimage')");
+  $select = mysqli_query($con, "INSERT INTO `cart`(`orderdate`, `userid`, `itemid`, `itemname`, `qun`, `rate`, `itemimage`) VALUES ('$currentDate','$userid','$itemid','$itemname','$quantity','$rate','$itemimage')");
 
   if ($select == true) {
 
@@ -62,13 +80,14 @@ if (isset($_POST['add'])) {
           <button class="btn btn-warning" type="button">
             <i class="material-icons nav__icon">search</i>
           </button>
+          <a href="logout.php">logout</a>
         </div>
       </div>
     </div>
   </div>
 
   <!-- card section  -->
-  <div class="container">
+  <div class="container" style="margin-bottom: 70px;">
 
     <h4 class="my-4">Change Heading</h4>
 
@@ -95,7 +114,7 @@ if (isset($_POST['add'])) {
 
                   <div class="d-flex align-items-center justify-content-between mb-2">
 
-                    <h5 class="card-title" name=><?php echo $row['itemname']; ?></h5>
+                    <h6 class="card-title" name=><?php echo $row['itemname']; ?></h6>
                     <input type="hidden" name="itemname" value="<?php echo $row['itemname']; ?>">
 
                     <h6>Rs.<?php echo $row['rate']; ?></h6>

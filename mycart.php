@@ -1,3 +1,32 @@
+<?php
+
+session_start();
+// error_reporting(0);
+include('./Admin/config.php');
+
+
+$username = $_SESSION['username'];
+$landmark = $_SESSION['landmark'];
+$userid = $_SESSION['userid'];
+$address = $_SESSION['address'];
+$pincode = $_SESSION['pincode'];
+$name = $_SESSION['name'];
+
+echo $username;
+echo $landmark;
+echo $userid;
+echo $address;
+echo $pincode;
+echo $name;
+
+if (!isset($_SESSION['username'])) {
+
+	header("location:./loginForm.php");
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,14 +41,14 @@
 <?php include('navabar.php'); ?>
 
 <body>
-	<div class="container">
+	<div class="container mb-4">
 		<h1 class="my-4 text-center text-warning">Shopping Cart</h1>
 		<div class="row">
 
 			<?php
 			include('./Admin/config.php');
 
-			$sql = "SELECT * FROM `cart`";
+			$sql = "SELECT * FROM `cart` WHERE `userid` = '$userid'";
 			$result = mysqli_query($con, $sql);
 
 
@@ -55,32 +84,37 @@
 			}
 
 			?>
-			<div class="col-md-4">
+
+
+			<div class="col-md-4 mb-5">
 				<div class="card">
 					<div class="card-body">
-						<h5 class="card-title">Cart</h5>
+						<div class="d-flex justify-content-between align-items-center">
+							<?php
 
-						<?php
-			
+							$sql = "SELECT *,SUM(rate)AS tot  FROM `cart` WHERE `userid` = $userid";
+							$result = mysqli_query($con, $sql);
+							if (mysqli_num_rows($result) > 0) {
 
-			$sql = "SELECT * FROM `cart` WHERE `userid`  ";
-			$result = mysqli_query($con, $sql);
+								$row = mysqli_fetch_assoc($result);
+							} else {
+								echo "error";
+							}
+
+							?>
+							<h5 class="card-title">Total Amount</h5>
+							<p class="text-right mt-3">Rs.<strong><?php echo $row['tot']; ?></strong></p>
+
+						</div>
 
 
-			if (mysqli_num_rows($result) > 0) {
-				while ($row = mysqli_fetch_assoc($result)) { ?>
-						<ul class="list-group">
-							<li class="list-group-item">Product 1 - Rs.250</li>
-							<li class="list-group-item">Product 2 - Rs.200</li>
-							<li class="list-group-item">Product 3 - Rs.300</li>
-						</ul>
-						<p class="text-right mt-3">Total: Rs.750</p>
-						<a class="btn btn-danger" href="./checkout.php">Checkout</a>
+
+
+						<a href="checkout.php?amt=<?php echo $row['tot']; ?>" class="btn btn-success form-control">Procced to Address</a>
 					</div>
 				</div>
 			</div>
 		</div>
-		<a href="checkout.php" class="btn btn-warning">Check Out</a>
 	</div>
 
 

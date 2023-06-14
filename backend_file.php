@@ -1,9 +1,10 @@
-<?php include("./Admin/config.php");
-
-
-?>
-
 <?php
+session_start();
+
+include("./Admin/config.php");
+
+
+
 if (isset($_POST['register'])) {
 
 	$name = $_POST['name'];
@@ -18,7 +19,7 @@ if (isset($_POST['register'])) {
 	$currentDate = date('Y-m-d');
 
 
-	$sql = "INSERT INTO `usermaster`( `usertype`, `name`, `contact`, `email`, `password`, `username`, `landmark`, `pincode`, `address`, `registrationdate`) VALUES ('customer','$name','$mob','$email','$encypass','$contact','$landmark','$pincode','$address','$currentDate')";
+	$sql = "INSERT INTO `usermaster`( `usertype`, `name`, `contact`, `email`, `password`, `username`, `landmark`, `pincode`, `address`, `registrationdate`) VALUES ('customer','$name','$mob','$email','$encypass','$mob','$landmark','$pincode','$address','$currentDate')";
 	// $sql = "INSERT INTO `usermaster`(`usertype`, `name`, `contact`, `email`, `password`, `username`, `landmark`, `pincode`, `address`, `address`) VALUES ('customer','$name','$mob','$email','$encypass','$username','$landmark','$pincode','$address')";
 
 	if (mysqli_query($con, $sql)) {
@@ -47,7 +48,7 @@ if (isset($_POST['login'])) {
 
 		if (mysqli_num_rows($result) > 0) {
 
-			$rows = mysqli_fetch_assoc($result);
+			$rows = mysqli_fetch_array($result);
 
 			$_SESSION['username'] = $rows['username'];
 			$_SESSION['userid'] = $rows['userid'];
@@ -63,8 +64,6 @@ if (isset($_POST['login'])) {
 				alert('Login Successful');
 				window.location.href='./header.php';
 				</script>";
-		} else {
-			echo mysqli_fetch_assoc($result);
 		}
 	} else {
 		echo "<script>
@@ -73,3 +72,8 @@ if (isset($_POST['login'])) {
 		</script>";
 	}
 }
+
+
+
+
+?>
