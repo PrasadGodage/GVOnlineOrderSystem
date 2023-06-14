@@ -18,13 +18,13 @@
 
 
 				<form action="backend_file.php" class="rounded bg-white shadow p-5" method="POST">
-					<h3 class="text-dark fw-bolder fs-4 mb-4">Check Out</h3>
+					<h3 class="text-dark fw-bolder fs-4 mb-4">CheckOut</h3>
 					<div class="form-floating mb-3">
-						<input type="text" class="form-control" name="name" placeholder="Enter Your Name" required>
+						<input type="text" class="form-control" name="name" placeholder="Enter Your Name" disabled>
 						<label for="floatingInput">Name</label>
 					</div>
 					<div class="form-floating mb-3">
-						<input type="number" class="form-control" name="mob" placeholder="number" required>
+						<input type="number" class="form-control" name="mob" placeholder="number" disabled>
 						<label for="floatingInput">Mob Number</label>
 					</div>
 
@@ -45,10 +45,14 @@
 						<input type="number" class="form-control" placeholder="PIN CODE" name="pincode" required>
 						<label for="floatingInput">Pin Code</label>
 					</div>
+					<div class="form-floating mb-3">
+						<input type="number" class="form-control" placeholder="Total Amount" name="amount" disabled>
+						<label for="floatingInput">Total Amount</label>
+					</div>
 
 
 
-					<button class="btn btn-warning mt-3" name="register" type="submit">Buy Now</button>
+					<a class="btn btn-warning mt-3" name="register" type="submit">Payment</a>
 
 				</form>
 
@@ -64,18 +68,3 @@
 </body>
 
 </html>
-
-<!-- <div class="col-md-4">
-	<div class="card">
-		<div class="card-body">
-			<h5 class="card-title">Cart</h5>
-			<ul class="list-group">
-				<li class="list-group-item">Product 1 - Rs.250</li>
-				<li class="list-group-item">Product 2 - Rs.200</li>
-				<li class="list-group-item">Product 3 - Rs.300</li>
-			</ul>
-			<p class="text-right mt-3">Total: Rs.750</p>
-			<button class="btn btn-danger">Checkout</button>
-		</div>
-	</div>
-</div> -->

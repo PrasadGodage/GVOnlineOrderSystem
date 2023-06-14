@@ -1,18 +1,22 @@
 <?php include('./Admin/config.php');
 
-// if ($_SESSION['username'] == "") {
-//   header("location:./loginForm.php");
-// }
+if ($_SESSION['username'] == "") {
+
+  header("location:./loginForm.php");
+}
 
 
 if (isset($_POST['add'])) {
   $itemname = $_POST['itemname'];
   $itemimage = $_POST['itemimage'];
   $rate = $_POST['rate'];
+  $itemid = $_POST['itemid'];
   $quantity = $_POST['quantity'];
+  $currentDate = date('Y-m-d');
+  $currentTime = time();
+  $userid = $_SESSION['userid'];
 
-
-  $select = mysqli_query($con, "INSERT INTO `cart`( `name`, `qun`, `price`, `img`) VALUES ('$itemname','$quantity','$rate','$itemimage') WHERE `name` = '$itemname'");
+  $select = mysqli_query($con, "INSERT INTO `cart`(`orderdate`, `ordertime`, `userid`, `itemid`, `itemname`, `qun`, `rate`, `itemimage`) VALUES ('$currentDate','$currentTime','$userid','$itemid','$itemname','$quantity','$rate','$itemimage')");
 
   if ($select == true) {
 
@@ -84,6 +88,7 @@ if (isset($_POST['add'])) {
           <div class="col-6">
             <form action="" method="POST">
               <div class="card food-card">
+                <input type="hidden" name="itemid" value="<?php echo $row['itemid']; ?>">
                 <img src="./Admin/<?php echo $row['itemimage']; ?>" class="card-img-top" alt="Food 1" width="100px" height="200px">
                 <input type="hidden" name="itemimage" value="<?php echo $row['itemimage']; ?>">
                 <div class="card-body">
@@ -102,7 +107,7 @@ if (isset($_POST['add'])) {
                   <input type="hidden" name="itemdisc" value="<?php echo $row['itemdisc']; ?>">
 
                   <div class="d-flex align-items-center justify-content-between card-body">
-                    <input type="text" class="product-quantity" name="quantity" value="1" size="2" required/>
+                    <input type="text" class="product-quantity" name="quantity" value="1" size="2" required />
                     <input type="submit" value="Add" class="btn btn-warning btn-sm" name="add" />
 
                   </div>

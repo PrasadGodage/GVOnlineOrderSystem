@@ -49,12 +49,36 @@
 							</div>
 						</div>
 					</div>
-					
+
 			<?php
 				}
 			}
 
 			?>
+			<div class="col-md-4">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Cart</h5>
+
+						<?php
+			
+
+			$sql = "SELECT * FROM `cart` WHERE `userid`  ";
+			$result = mysqli_query($con, $sql);
+
+
+			if (mysqli_num_rows($result) > 0) {
+				while ($row = mysqli_fetch_assoc($result)) { ?>
+						<ul class="list-group">
+							<li class="list-group-item">Product 1 - Rs.250</li>
+							<li class="list-group-item">Product 2 - Rs.200</li>
+							<li class="list-group-item">Product 3 - Rs.300</li>
+						</ul>
+						<p class="text-right mt-3">Total: Rs.750</p>
+						<a class="btn btn-danger" href="./checkout.php">Checkout</a>
+					</div>
+				</div>
+			</div>
 		</div>
 		<a href="checkout.php" class="btn btn-warning">Check Out</a>
 	</div>
@@ -68,18 +92,3 @@
 </body>
 
 </html>
-
-<!-- <div class="col-md-4">
-	<div class="card">
-		<div class="card-body">
-			<h5 class="card-title">Cart</h5>
-			<ul class="list-group">
-				<li class="list-group-item">Product 1 - Rs.250</li>
-				<li class="list-group-item">Product 2 - Rs.200</li>
-				<li class="list-group-item">Product 3 - Rs.300</li>
-			</ul>
-			<p class="text-right mt-3">Total: Rs.750</p>
-			<button class="btn btn-danger">Checkout</button>
-		</div>
-	</div>
-</div> -->

@@ -51,6 +51,12 @@ if (isset($_POST['login'])) {
 
 			$_SESSION['username'] = $rows['username'];
 			$_SESSION['userid'] = $rows['userid'];
+			$_SESSION['landmark'] = $rows['landmark'];
+			$_SESSION['address'] = $rows['address'];
+			$_SESSION['pincode'] = $rows['pincode'];
+			$_SESSION['name'] = $rows['name'];
+
+
 
 
 			echo "<script>
