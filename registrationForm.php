@@ -18,11 +18,7 @@
 
 				<form action="backend_file.php" class="rounded bg-white shadow p-5" method="POST" autocomplete="off">
 					<h3 class="text-dark fw-bolder fs-4 mb-4">Registration Form</h3>
-					<select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" name="cusType">
-						<option selected>Select User</option>
-						<option value="1">Customer</option>
-						<option value="2">Delivery</option>
-					</select>
+					
 
 					<div class="form-floating mb-3">
 

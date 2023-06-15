@@ -8,7 +8,7 @@ include("./Admin/config.php");
 if (isset($_POST['register'])) {
 
 	$name = $_POST['name'];
-	$cusType = $_POST['cusType'];
+	
 
 	$landmark = $_POST['landmark'];
 	$mob = $_POST['mob'];
@@ -20,7 +20,7 @@ if (isset($_POST['register'])) {
 	$currentDate = date('Y-m-d');
 
 
-	$sql = "INSERT INTO `usermaster`( `usertype`, `name`, `contact`, `email`, `password`, `username`, `landmark`, `pincode`, `address`, `registrationdate`) VALUES ('$cusType','$name','$mob','$email','$encypass','$mob','$landmark','$pincode','$address','$currentDate')";
+	$sql = "INSERT INTO `usermaster`( `usertype`, `name`, `contact`, `email`, `password`, `username`, `landmark`, `pincode`, `address`, `registrationdate`) VALUES ('customer','$name','$mob','$email','$encypass','$mob','$landmark','$pincode','$address','$currentDate')";
 	// $sql = "INSERT INTO `usermaster`(`usertype`, `name`, `contact`, `email`, `password`, `username`, `landmark`, `pincode`, `address`, `address`) VALUES ('customer','$name','$mob','$email','$encypass','$username','$landmark','$pincode','$address')";
 
 	if (mysqli_query($con, $sql)) {
