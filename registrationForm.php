@@ -18,7 +18,7 @@
 
 				<form action="backend_file.php" class="rounded bg-white shadow p-5" method="POST" autocomplete="off">
 					<h3 class="text-dark fw-bolder fs-4 mb-4">Registration Form</h3>
-					
+
 
 					<div class="form-floating mb-3">
 
@@ -60,7 +60,7 @@
 						<h6>Already Customer <a href="./loginForm.php"> <strong class="text-primary text-decoration-none">Login</strong></a></h6>
 					</div>
 
-					<button class="btn btn-warning mt-3" name="register" type="submit" onclick="validateForm()">Register</button>
+					<button class="btn btn-warning mt-3" name="register" type="submit" >Register</button>
 
 				</form>
 
@@ -70,23 +70,23 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
 	<script>
-		function validateForm() {
-			var password = document.getElementById("password").value;
-			var confirmPassword = document.getElementById("confirmPassword").value;
-			var mob = document.getElementById("mob").value;
+		// function validateForm() {
+		// 	var password = document.getElementById("password").value;
+		// 	var confirmPassword = document.getElementById("confirmPassword").value;
+		// 	var mob = document.getElementById("mob").value;
 
-			if(mob.length !== 10) {
-				alert("Please enetr correct mobile number.");
+		// 	if (mob.length !== 10) {
+		// 		alert("Please enetr correct mobile number.");
 
-			}
+		// 	}
 
-			if (password !== confirmPassword) {
-				alert("Passwords do not match!");
-				
-			}
+		// 	if (password !== confirmPassword) {
+		// 		alert("Passwords do not match!");
 
-			
-		}
+		// 	}
+
+
+		// }
 	</script>
 </body>
 
