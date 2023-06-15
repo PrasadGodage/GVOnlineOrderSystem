@@ -66,7 +66,22 @@ if (!isset($_SESSION['username'])) {
 									<div class="d-flex justify-content-between align-items-center">
 
 										<h6>Order id: <?php echo $row['orderid']; ?></h6>
-										<h6>Status: <span class="text-danger"><?php echo $row['orderstatus']; ?></span></h6>
+										<h6>Status: 
+									<?php 
+										if($row['orderstatus']=='open')
+										{
+											echo '<span class="text-danger">OPEN</span>';
+										 }
+										if($row['orderstatus']=='Accept')
+										{
+											echo '<span class="text-warning">Accepted</span>';
+										}
+										if($row['orderstatus']=='Assign')
+										{
+											echo '<span class="text-success">Dispatch</span>';
+										}
+									?>
+										</h6>
 									</div>
 								</div>
 								<div class="card-body">
