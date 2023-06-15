@@ -32,9 +32,10 @@ if (isset($_POST['payment'])) {
 	$orderpincode = $_POST['orderpincode'];
 	$orderamt = $_POST['orderamt'];
 	$currentDate = date('Y-m-d');
+	$orderstatus = "Open";
 
 
-	$s = "INSERT INTO `ordermaster`(`orderdate`, `userid`, `address`, `landmark`, `pincode`, `orderbillamount` ) VALUES ('$currentDate','$userid','$orderaddress','$orderlandmark','$orderpincode','$orderamt')";
+	$s = "INSERT INTO `ordermaster`(`orderdate`, `userid`, `address`, `landmark`, `pincode`, `orderstatus`, `orderbillamount` ) VALUES ('$currentDate','$userid','$orderaddress','$orderlandmark','$orderpincode','$orderstatus','$orderamt')";
 
 	$q = mysqli_query($con, $s);
 
@@ -46,22 +47,24 @@ if (isset($_POST['payment'])) {
 		$selectData = "SELECT `orderid` , `rate`, `qun`, `itemid`
 				FROM `cart` 
 				INNER JOIN ordermaster ON ordermaster.userid=cart.userid  
-				WHERE cart.userid=10 AND ordermaster.orderstatus = 0";
+				WHERE cart.userid='$userid' AND ordermaster.orderstatus = 0";
 		$selectquery = mysqli_query($con, $selectData);
 
-		if (mysqli_num_rows($selectquery) > 0) {
+		if ($selectquery) {
 			while ($fetch = mysqli_fetch_assoc($selectquery)) {
 				$orderid = $fetch['orderid'];
 				$itemid = $fetch['itemid'];
-				$qty = $fetch['qty'];
+				$qty = $fetch['qun'];
 				$rate = $fetch['rate'];
 				$amount = $fetch['rate'] * $fetch['qun'];
 
-				$insertq = "INSERT INTO `orderdetails`(`orderid`, `itemid`, `qty`, `rate`, `amount`) VALUES ('$orderid','$itemid','$qty','$rate','$amount')";
+				$insertq = "INSERT INTO `orderdetails`(`orderid`, `itemid`, `userid`, `qty`, `rate`, `amount`) VALUES ('$orderid','$itemid', '$userid','$qty','$rate','$amount')";
+
+
+				$res = mysqli_query($con, $insertq);
 			}
-			if (mysqli_query($con, $insertq)) {
 
-
+			if ($res) {
 
 
 				$userid = $_SESSION['userid'];
@@ -78,6 +81,7 @@ if (isset($_POST['payment'])) {
 		}
 	}
 }
+
 
 
 ?>

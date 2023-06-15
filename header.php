@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 error_reporting(0);
 include('./Admin/config.php');
@@ -11,12 +11,7 @@ $address = $_SESSION['address'];
 $pincode = $_SESSION['pincode'];
 $name = $_SESSION['name'];
 
-echo $username;
-echo $landmark;
-echo $userid;
-echo $address;
-echo $pincode;
-echo $name;
+
 
 if (!isset($_SESSION['username'])) {
 
@@ -32,7 +27,7 @@ if (isset($_POST['add'])) {
   $quantity = $_POST['quantity'];
   $currentDate = date('Y-m-d');
   $currentTime = time();
-  
+
 
   $select = mysqli_query($con, "INSERT INTO `cart`(`orderdate`, `userid`, `itemid`, `itemname`, `qun`, `rate`, `itemimage`) VALUES ('$currentDate','$userid','$itemid','$itemname','$quantity','$rate','$itemimage')");
 

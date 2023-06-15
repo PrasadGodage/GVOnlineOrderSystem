@@ -1,6 +1,9 @@
 <?php
 
 session_start();
+
+
+
 // error_reporting(0);
 include('./Admin/config.php');
 
@@ -12,12 +15,8 @@ $address = $_SESSION['address'];
 $pincode = $_SESSION['pincode'];
 $name = $_SESSION['name'];
 
-echo $username;
-echo $landmark;
-echo $userid;
-echo $address;
-echo $pincode;
-echo $name;
+
+
 
 if (!isset($_SESSION['username'])) {
 
@@ -92,7 +91,7 @@ if (!isset($_SESSION['username'])) {
 						<div class="d-flex justify-content-between align-items-center">
 							<?php
 
-							$sql = "SELECT *,SUM(rate)AS tot  FROM `cart` WHERE `userid` = $userid";
+							$sql = "SELECT *,SUM(qun * rate) AS tot  FROM `cart` WHERE `userid` = $userid";
 							$result = mysqli_query($con, $sql);
 							if (mysqli_num_rows($result) > 0) {
 

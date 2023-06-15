@@ -6,7 +6,7 @@ include('./Admin/config.php');
 
 
 $userid = $_SESSION['userid'];
-echo $userid;
+
 
 
 
@@ -72,14 +72,14 @@ echo $userid;
 
 
 	?>
-	<div class="container-fluid">
+	<div class="container-fluid" style="margin-left: -12px;">
 		<!-- navbar  -->
 		<nav class="nav bg-warning">
 			<a href="header.php" class="nav__link">
 				<i class="material-icons nav__icon">home</i>
 				<span class="nav__text">Home</span>
 			</a>
-			<a href="#" class="nav__link nav__link--active">
+			<a href="./orders.php" class="nav__link nav__link--active">
 				<i class="material-icons nav__icon">shopping_bag</i>
 				<span class="nav__text">Orders</span>
 			</a>
