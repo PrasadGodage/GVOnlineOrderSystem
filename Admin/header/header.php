@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../config.php');
+include('config.php');
 include('functions.php');
 if(!isset($_SESSION['id']))
 {
@@ -194,7 +194,7 @@ if($userrole=="admin")
                 </ul>
               </li>
 
-              <a href="customers.php" class="nav-link"><i data-feather="shopping-cart"></i><span> Manage Orders</span></a></li>
+              <a href="manageorders.php" class="nav-link"><i data-feather="shopping-cart"></i><span> Manage Orders</span></a></li>
              
 
               <!-- <li class="dropdown">

@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(0);
-include('./Admin/config.php');
+include('config.php');
 
 
 $username = $_SESSION['username'];
