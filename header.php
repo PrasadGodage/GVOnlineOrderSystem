@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(0);
-include('config.php');
+include('./Admin/config.php');
 
 
 $username = $_SESSION['username'];
@@ -31,11 +31,11 @@ if (isset($_POST['add'])) {
 
   $select = mysqli_query($con, "INSERT INTO `cart`(`orderdate`, `userid`, `itemid`, `itemname`, `qun`, `rate`, `itemimage`) VALUES ('$currentDate','$userid','$itemid','$itemname','$quantity','$rate','$itemimage')");
 
-  if ($select == true) {
+  if ($select) {
 
-    $message[] = "Product Added to cart successfully";
+    echo "Product Added to cart successfully";
   } else {
-    $message[] = "Error";
+    echo "Error";
   }
 }
 
@@ -82,7 +82,7 @@ if (isset($_POST['add'])) {
   </div>
 
   <!-- card section  -->
-  <div class="container" style="margin-bottom: 70px;">
+  <div class="container product-data" style="margin-bottom: 70px;">
 
     <h4 class="my-4">Change Heading</h4>
 
@@ -106,27 +106,25 @@ if (isset($_POST['add'])) {
                 <img src="./Admin/<?php echo $row['itemimage']; ?>" class="card-img-top" alt="Food 1" width="100px" height="200px">
                 <input type="hidden" name="itemimage" value="<?php echo $row['itemimage']; ?>">
                 <div class="card-body">
+                  <h6 class="card-title" name=><?php echo $row['itemname']; ?></h6>
+                  <input type="hidden" name="itemname" value="<?php echo $row['itemname']; ?>">
+                  <h6>Rs. <strong> <?php echo $row['rate']; ?>.00</strong></h6>
+                  <input type="hidden" name="rate" value="<?php echo $row['rate']; ?>">
+                </div>
 
-                  <div class="d-flex align-items-center justify-content-between mb-2">
 
-                    <h6 class="card-title" name=><?php echo $row['itemname']; ?></h6>
-                    <input type="hidden" name="itemname" value="<?php echo $row['itemname']; ?>">
-
-                    <h6>Rs.<?php echo $row['rate']; ?></h6>
-                    <input type="hidden" name="rate" value="<?php echo $row['rate']; ?>">
-
+                <div class="d-flex align-items-center justify-content-between card-body">
+                  <div class="input-group input-group-sm" style="width: 80px;">
+                    <button class="input-group-text decrement" id="decrement">-</button>
+                    <input type="text" class="form-control bg-white text-center input-qty" id="" value="1" disabled>
+                    <button class="input-group-text increment" id="increment">+</button>
                   </div>
-
-                  <p class="text-justify" style="text-align: justify;"><?php echo $row['itemdisc']; ?></p>
-                  <input type="hidden" name="itemdisc" value="<?php echo $row['itemdisc']; ?>">
-
-                  <div class="d-flex align-items-center justify-content-between card-body">
-                    <input type="text" class="product-quantity" name="quantity" value="1" size="2" required />
-                    <input type="submit" value="Add" class="btn btn-warning btn-sm" name="add" />
-
-                  </div>
+                  <!-- <input type="text" class="product-quantity" name="quantity" value="1" size="2" required /> -->
+                  <input type="submit" value="Add" class="btn btn-warning btn-sm" name="add" />
 
                 </div>
+
+
               </div>
             </form>
           </div>
@@ -156,6 +154,33 @@ if (isset($_POST['add'])) {
 
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    // $(document).ready(function() {
+    //   $('.increment').click(function(e) {
+    //     e.preventDefault();
+
+    //     var qty = $(this).closet('.product-data').find('.input-qty').val();
+    //     var value = parseInt(qty, 10);
+
+    //     value = isNaN(value) ? 0 : value;
+    //     if (value < 10) {
+    //       value++;
+    //       $(this).closet('.product-data').find('.input-qty').val(value);
+    //     }
+
+
+    //   });
+    // });
+
+
+    $(function() {
+      $('.increment').click(function() {
+        alert("Plus")
+      })
+    })
+  </script>
 </body>
 
 </html>

@@ -22,16 +22,18 @@ if (isset($_POST['register'])) {
 
 	$sql = "INSERT INTO `usermaster`( `usertype`, `name`, `contact`, `email`, `password`, `username`, `landmark`, `pincode`, `address`, `registrationdate`) VALUES ('customer','$name','$mob','$email','$encypass','$mob','$landmark','$pincode','$address','$currentDate')";
 
+	echo $sql;
+
 
 	if (mysqli_query($con, $sql)) {
-		echo "<script>
-				alert('Registration successful');
-				window.location.href='./loginForm.php';
-				</script>";
-		echo "<script>
-				alert('Error registration');
-				window.location.href='./registrationForm.php';
-				</script>";
+		// echo "<script>
+		// 		alert('Registration successful');
+		// 		window.location.href='./loginForm.php';
+		// 		</script>";
+		// echo "<script>
+		// 		alert('Error registration');
+		// 		window.location.href='./registrationForm.php';
+		// 		</script>";
 	}
 }
 

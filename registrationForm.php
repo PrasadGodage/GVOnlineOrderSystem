@@ -16,19 +16,14 @@
 			<div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 text-center mt-5">
 
 
-				<form action="backend_file.php" class="rounded bg-white shadow p-5" method="POST" autocomplete="off">
+				<form action="backend_file.php" class="rounded bg-white shadow p-5" method="POST">
 					<h3 class="text-dark fw-bolder fs-4 mb-4">Registration Form</h3>
-
-
-					<div class="form-floating mb-3">
-
-					</div>
 					<div class="form-floating mb-3">
 						<input type="text" class="form-control" name="name" placeholder="Enter Your Name" required>
 						<label for="floatingInput">Name</label>
 					</div>
 					<div class="form-floating mb-3">
-						<input type="number" class="form-control" name="mob" id="mob" placeholder="number" required>
+						<input type="number" class="form-control" name="mob" placeholder="number" required>
 						<label for="floatingInput">Mob Number</label>
 					</div>
 					<div class="form-floating mb-3">
@@ -48,11 +43,11 @@
 						<label for="floatingInput">Pin Code</label>
 					</div>
 					<div class="form-floating mb-3">
-						<input type="password" class="form-control" name="password" id="password" required>
+						<input type="password" class="form-control" name="password" required>
 						<label>Password</label>
 					</div>
 					<div class="form-floating mb-3">
-						<input type="password" class="form-control" id="confirmPassword" required>
+						<input type="password" class="form-control" required>
 						<label>Confirm Password</label>
 					</div>
 
