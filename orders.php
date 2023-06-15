@@ -18,6 +18,8 @@ $name = $_SESSION['name'];
 
 
 
+
+
 if (!isset($_SESSION['username'])) {
 
 	header("location:./loginForm.php");
@@ -41,7 +43,7 @@ if (!isset($_SESSION['username'])) {
 
 <body>
 	<div class="container mb-4">
-		<h1 class="my-4 text-center text-warning">Your Orders</h1>
+		<h1 class=" my-4 text-center text-warning">Your Orders</h1>
 		<div class="row">
 
 			<?php
@@ -54,13 +56,13 @@ if (!isset($_SESSION['username'])) {
 			if (mysqli_num_rows($result) > 0) {
 				while ($row = mysqli_fetch_assoc($result)) { ?>
 
-					<div class="col-md-8 mb-3">
+					<div class="col-md-8" style="margin-bottom:40px;">
 
 						<div class="card">
 
 
 							<div>
-								<div class="card-body">
+								<div class=" card-body">
 									<div class="d-flex justify-content-between align-items-center">
 
 										<h6>Order id: <?php echo $row['orderid']; ?></h6>
