@@ -60,7 +60,7 @@
 						<h6>Already Customer <a href="./loginForm.php"> <strong class="text-primary text-decoration-none">Login</strong></a></h6>
 					</div>
 
-					<button class="btn btn-warning mt-3" name="register" type="submit" >Register</button>
+					<button class="btn btn-warning mt-3" name="register" type="submit">Register</button>
 
 				</form>
 

@@ -21,14 +21,13 @@ if (isset($_POST['register'])) {
 
 
 	$sql = "INSERT INTO `usermaster`( `usertype`, `name`, `contact`, `email`, `password`, `username`, `landmark`, `pincode`, `address`, `registrationdate`) VALUES ('customer','$name','$mob','$email','$encypass','$mob','$landmark','$pincode','$address','$currentDate')";
-	// $sql = "INSERT INTO `usermaster`(`usertype`, `name`, `contact`, `email`, `password`, `username`, `landmark`, `pincode`, `address`, `address`) VALUES ('customer','$name','$mob','$email','$encypass','$username','$landmark','$pincode','$address')";
+
 
 	if (mysqli_query($con, $sql)) {
 		echo "<script>
 				alert('Registration successful');
 				window.location.href='./loginForm.php';
 				</script>";
-	} else {
 		echo "<script>
 				alert('Error registration');
 				window.location.href='./registrationForm.php';
