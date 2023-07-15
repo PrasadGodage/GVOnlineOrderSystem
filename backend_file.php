@@ -63,7 +63,7 @@ if (isset($_POST['login'])) {
 
 
 			echo "<script>
-				alert('Login Successful');
+				alert('Login Successful.');
 				window.location.href='./header.php';
 				</script>";
 		}
