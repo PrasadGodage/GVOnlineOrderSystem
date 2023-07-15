@@ -2,7 +2,7 @@
 session_start();
 include('config.php');
 include('functions.php');
-if(!isset($_SESSION['id']))
+if(isset($_SESSION['id']))
 {
   // header()
   header('Location:logout.php');
@@ -184,7 +184,18 @@ if($userrole=="admin")
 <ul class="sidebar-menu">
             <li class="menu-header">Main</li>
             <li class="dropdown">
-              <a href="Dashboard.php" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+              <a href="dashboard.php" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+
+           
+              <hr>
+              <li class="dropdown ml-3"><b>Mange Orders</b></li>
+              <li class="dropdown"><a href="neworders.php" class="nav-link"><i data-feather="trending-up"></i><span> New Orders</span></a></li>
+              <li class="dropdown"><a href="manageorders.php" class="nav-link"><i data-feather="check-circle"></i><span> Accepted Orders</span></a></li>
+              <li class="dropdown"><a href="assignedorders.php" class="nav-link"><i data-feather="truck"></i><span> Assigned Orders</span></a></li>
+              <li class="dropdown"><a href="completedorders.php" class="nav-link"><i data-feather="arrow-right-circle"></i><span> Completed Orders</span></a></li>
+              <hr>
+              <li class="dropdown"><a href="deliveryboymaster.php" class="nav-link"><i data-feather="user"></i><span> Delivery Boy</span></a></li>
+             
 
               <li class="dropdown">
                 <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="check-circle"></i><span>Manage Menu card</span></a>
@@ -194,138 +205,13 @@ if($userrole=="admin")
                 </ul>
               </li>
 
-              <a href="manageorders.php" class="nav-link"><i data-feather="shopping-cart"></i><span> Manage Orders</span></a></li>
-             
-
-              <!-- <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="truck"></i><span>Manage Transport</span></a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="transporter.php">Manage Transporter</a></li>
-                  <li><a class="nav-link" href="trucks.php">Manage Trucks</a></li>
-                </ul>
-              </li>
-
-              <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="file-text"></i><span>Manage Challan</span></a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="newchallan.php">Create New challan</a></li>
-                  <li><a class="nav-link" href="manageallchallanrecord.php">Manage challan</a></li>
-                  <li><a class="nav-link" href="viewallchallanrecord.php">View All</a></li>
-                </ul>
-              </li>
-
-            
-
             <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="dollar-sign"></i><span>Manage Transaction</span></a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="createrecipt.php">create new Recipt</a></li>
-                  <li><a class="nav-link" href="trucks.php">View All</a></li>
-                </ul>
-              </li>
-
-              <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="folder-plus"></i><span>Manage Expences</span></a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="createexpence.php">Create Expence Record</a></li>
-                  <li><a class="nav-link" href="viewallexpences.php">View All</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-              <a href="services.php" class="nav-link"><i data-feather="repeat"></i><span>Manage Service</span></a>
-            </li>
-             <li class="dropdown">
-              <a href="ledgerreport.php" class="nav-link"><i data-feather="file-text"></i><span>Ledger Report</span></a>
-            </li> -->
-
-            <!-- <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="file-text"></i><span>Reports</span></a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="ledgerreport.php">Ledger Report</a></li>
-                  <li><a class="nav-link" href="monthledgerreport.php">Month Wise Report</a></li>
-                </ul>
-              </li> --> 
-
-            <li class="dropdown">
-              <a href="managecomapany.php" class="nav-link"><i data-feather="home"></i><span>Manage Restorent</span></a>
+              <a href="managecomapany.php" class="nav-link"><i data-feather="home"></i><span>Manage Restaurant</span></a>
             </li>
 
             
           </ul>
 <?php
-}
-if($userrole=="manager")
-{?>
-<!-- Manager Menu Goes Here -->
-<ul class="sidebar-menu">
-            <li class="menu-header">Main</li>
-            <li class="dropdown">
-              <a href="Dashboard.php" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
-              <a href="customers.php" class="nav-link"><i data-feather="user"></i><span>Manage Party</span></a></li>
-              <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="package"></i><span>Manage Goods</span></a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="Goods.php">Goods Manager</a></li>
-                  <li><a class="nav-link" href="range.php">Range Manager</a></li>
-                </ul>
-              </li>
-
-              <!-- <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="truck"></i><span>Manage Transport</span></a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="transporter.php">Manage Transporter</a></li>
-                  <li><a class="nav-link" href="trucks.php">Manage Trucks</a></li>
-                </ul>
-              </li> -->
-
-              <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="file-text"></i><span>Manage Challan</span></a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="newchallan.php">Create New challan</a></li>
-                  <li><a class="nav-link" href="manageallchallanrecord.php">Manage challan</a></li>
-                  <li><a class="nav-link" href="viewallchallanrecord.php">View All</a></li>
-                </ul>
-              </li>
-
-            
-
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="dollar-sign"></i><span>Manage Transaction</span></a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="createrecipt.php">create new Recipt</a></li>
-                  <li><a class="nav-link" href="trucks.php">View All</a></li>
-                </ul>
-              </li>
-
-              <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="folder-plus"></i><span>Manage Expences</span></a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="createexpence.php">Create Expence Record</a></li>
-                  <li><a class="nav-link" href="viewallexpences.php">View All</a></li>
-                </ul>
-              </li>
-              <!-- <li class="dropdown">
-              <a href="services.php" class="nav-link"><i data-feather="repeat"></i><span>Manage Service</span></a>
-            </li> -->
-            <!-- <li class="dropdown">
-              <a href="ledgerreport.php" class="nav-link"><i data-feather="file-text"></i><span>Ledger Report</span></a>
-            </li> -->
-
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="file-text"></i><span>Reports</span></a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="ledgerreport.php">Ledger Report</a></li>
-                  <li><a class="nav-link" href="monthledgerreport.php">Month Wise Report</a></li>
-                </ul>
-              </li>
-
-            <!-- <li class="dropdown">
-              <a href="managecomapany.php" class="nav-link"><i data-feather="home"></i><span>Manage Company</span></a>
-            </li> -->
-
-            
-          </ul>
-<?php 
 }
 
 ?>

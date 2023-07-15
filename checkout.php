@@ -11,77 +11,26 @@ $userid = $_SESSION['userid'];
 $address = $_SESSION['address'];
 $pincode = $_SESSION['pincode'];
 $name = $_SESSION['name'];
+$email = $_SESSION['email'];
 
-echo $username;
-echo $landmark;
-echo $userid;
-echo $address;
-echo $pincode;
-echo $name;
+
+
+
+
 
 if (!isset($_SESSION['username'])) {
 
 	header("location:./loginForm.php");
 }
 
-if (isset($_POST['payment'])) {
-	$ordername = $_POST['ordername'];
-	$orderusername = $_POST['ordermob'];
-	$orderaddress = $_POST['orderaddress'];
-	$orderlandmark = $_POST['orderlandmark'];
-	$orderpincode = $_POST['orderpincode'];
-	$orderamt = $_POST['orderamt'];
-	$currentDate = date('Y-m-d');
-	$orderstatus = "Open";
-
-
-	$s = "INSERT INTO `ordermaster`(`orderdate`, `userid`, `address`, `landmark`, `pincode`, `orderstatus`, `orderbillamount` ) VALUES ('$currentDate','$userid','$orderaddress','$orderlandmark','$orderpincode','$orderstatus','$orderamt')";
-
-	$q = mysqli_query($con, $s);
-
-	if ($q) {
-
-
-
-
-		$selectData = "SELECT `orderid` , `rate`, `qun`, `itemid`
-				FROM `cart` 
-				INNER JOIN ordermaster ON ordermaster.userid=cart.userid  
-				WHERE cart.userid='$userid' AND ordermaster.orderstatus = 0";
-		$selectquery = mysqli_query($con, $selectData);
-
-		if ($selectquery) {
-			while ($fetch = mysqli_fetch_assoc($selectquery)) {
-				$orderid = $fetch['orderid'];
-				$itemid = $fetch['itemid'];
-				$qty = $fetch['qun'];
-				$rate = $fetch['rate'];
-				$amount = $fetch['rate'] * $fetch['qun'];
-
-				$insertq = "INSERT INTO `orderdetails`(`orderid`, `itemid`, `userid`, `qty`, `rate`, `amount`) VALUES ('$orderid','$itemid', '$userid','$qty','$rate','$amount')";
-
-
-				$res = mysqli_query($con, $insertq);
-			}
-
-			if ($res) {
-
-
-				$userid = $_SESSION['userid'];
-				$deleteCartData = "DELETE FROM `cart` WHERE `userid` = '$userid'";
-
-
-				if (mysqli_query($con, $deleteCartData)) {
-					echo "<script>
-					alert('Order Successful');
-					window.location.href='./orders.php';
-					</script>";
-				}
-			}
-		}
-	}
-}
-
+// if (isset($_GET['payment'])) {
+// 	echo "<script>
+// 				alert('Sorry Currently not accept Orders');
+// 				alert('Orders accept from 1 July');
+// 				alert('Thanks for your support');
+// 				window.location.href='./header.php';
+// 				</script>";
+// }
 
 
 ?>
@@ -98,15 +47,12 @@ if (isset($_POST['payment'])) {
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<title>Checkout</title>
 </head>
-<?php include('navabar.php'); ?>
-
+<?php include('nav1.php'); ?>
 <body>
 	<section class="wrapper">
 		<div class="container" style="margin-bottom: 70px;">
 			<div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 text-center mt-5">
-
-
-				<form action="" class="rounded bg-white shadow p-5" method="POST">
+				<form action="razorpay/pay.php" class="rounded bg-white shadow p-5" method="GET">
 					<h3 class="text-dark fw-bolder fs-4 mb-4">CheckOut</h3>
 					<div class="form-floating mb-3">
 						<input type="text" class="form-control" name="name" placeholder="Enter Your Name" disabled>
@@ -118,16 +64,11 @@ if (isset($_POST['payment'])) {
 						<label for="floatingInput"><?php echo $username; ?></label>
 						<input type="hidden" class="form-control" name="ordermob" value="<?php echo $username; ?>" placeholder="number">
 					</div>
-
 					<div class="input-group form-floating mb-3">
 						<input type="text" class="form-control" name="address" placeholder="Address">
-						<span class="input-group-text"><a href="https://www.google.com/maps"><i class="material-icons nav__icon">add_location_alt</i></a></span>
+						<!-- <span class="input-group-text"><a href="https://www.google.com/maps"><i class="material-icons nav__icon">add_location_alt</i></a></span> -->
 						<label for="floatingInput"><?php echo $address; ?></label>
 						<input type="hidden" class="form-control" name="orderaddress" placeholder="Address" value="<?php echo $address; ?>">
-
-
-
-
 					</div>
 					<div class="form-floating mb-3">
 						<input type="text" class="form-control" placeholder="Address" name="landmark">
@@ -144,13 +85,18 @@ if (isset($_POST['payment'])) {
 						<label for="floatingInput">Rs.<?php echo $amt ?></label>
 						<input type="hidden" class="form-control" name="orderamt" value="<?php echo $amt; ?>">
 					</div>
-
-
-
-					<input class="btn btn-success mt-3" name="payment" type="submit">
-
+					<button class="btn btn-primary" type="button" onclick="getLocation()" onkeypress="<?php $btnn = 'submit'; ?>">Get Live Location</button>
+					<input type="hidden" id="latitude" name="lat" readonly required>
+					<input type="text" id="longitude" name="lon" readonly required>
+					<input type="hidden" class="form-control" name="uid" value="<?php echo $userid; ?>">
+					<input type="hidden" class="form-control" name="email" value="<?php echo $email; ?>">
+					<br>
+					<input class="btn btn-success mt-3" name="payment" type="<?php if ($btnn == 'submit') {
+																					echo $btnn;
+																				} else {
+																					echo 'hidden';
+																				} ?>">
 				</form>
-
 			</div>
 		</div>
 	</section>
@@ -158,7 +104,53 @@ if (isset($_POST['payment'])) {
 
 
 
+	<script>
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition, showError);
+			} else {
+				console.log("Geolocation is not supported by this browser.");
+			}
+		}
 
+		function showPosition(position) {
+			var latitude = position.coords.latitude;
+			var longitude = position.coords.longitude;
+			var accuracy = position.coords.accuracy;
+
+
+
+			alert("Your live location successfully fetched", "Latitude: " + latitude, "Longitude: " + longitude);
+
+
+			var locationInput = document.getElementById("latitude");
+			locationInput.value = (latitude);
+
+			var longitudeInput = document.getElementById("longitude");
+			longitudeInput.value = (longitude);
+		}
+
+		function showError(error) {
+			switch (error.code) {
+				case error.PERMISSION_DENIED:
+					console.log("User denied the request for Geolocation.");
+					break;
+				case error.POSITION_UNAVAILABLE:
+					console.log("Location information is unavailable.");
+					break;
+				case error.TIMEOUT:
+					console.log("The request to get user location timed out.");
+					break;
+				case error.UNKNOWN_ERROR:
+					console.log("An unknown error occurred.");
+					break;
+			}
+		}
+
+		console.log('Check')
+		console.log(latitude);
+		console.log(longitude);
+	</script>
 
 </body>
 

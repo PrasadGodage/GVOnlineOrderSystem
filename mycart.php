@@ -14,6 +14,7 @@ $userid = $_SESSION['userid'];
 $address = $_SESSION['address'];
 $pincode = $_SESSION['pincode'];
 $name = $_SESSION['name'];
+$email = $_SESSION['email'];
 
 
 
@@ -22,6 +23,9 @@ if (!isset($_SESSION['username'])) {
 
 	header("location:./loginForm.php");
 }
+
+
+
 
 ?>
 
@@ -37,7 +41,10 @@ if (!isset($_SESSION['username'])) {
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<title>Add to Cart</title>
 </head>
-<?php include('navabar.php'); ?>
+
+
+
+<?php include('./nav1.php'); ?>
 
 <body>
 	<div class="container mb-4">
@@ -64,12 +71,21 @@ if (!isset($_SESSION['username'])) {
 									<img src="./Admin/<?php echo $row['itemimage']; ?>" height="80px" width="80px">
 								</div>
 								<div class="card-body">
-									<h5 class="card-title"><?php echo $row['itemname']; ?></h5>
+									<p class="card-title text-bold"><?php echo $row['itemname']; ?></p>
 									<p class="card-text">Quantity: <?php echo $row['qun']; ?></p>
 								</div>
 								<div class="card-body">
 
 									<p class="card-text">Rs.<?php echo $row['rate']; ?></p>
+								</div>
+								<div class="card-body">
+									<?php
+
+									$iditem = $row['itemid'];
+
+									?>
+									<a href="backend_file.php?iditem=<?php echo $iditem; ?>"><img src="assets/del.png" alt="" height="25px" width="25px"></a>
+
 								</div>
 
 
@@ -91,14 +107,14 @@ if (!isset($_SESSION['username'])) {
 						<div class="d-flex justify-content-between align-items-center">
 							<?php
 
-							$sql = "SELECT *,SUM(qun * rate) AS tot  FROM `cart` WHERE `userid` = $userid";
+							$sql = "SELECT `userid` , SUM(qun * rate) AS tot FROM `cart` WHERE `userid` = '$userid' GROUP BY `userid` ";
+
 							$result = mysqli_query($con, $sql);
 							if (mysqli_num_rows($result) > 0) {
 
 								$row = mysqli_fetch_assoc($result);
-							} else {
-								echo "error";
 							}
+
 
 							?>
 							<h5 class="card-title">Total Amount</h5>
@@ -119,6 +135,8 @@ if (!isset($_SESSION['username'])) {
 
 
 
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
 
 

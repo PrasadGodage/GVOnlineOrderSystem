@@ -1,5 +1,0 @@
----
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/gvsoft/public_html/order
-    - /bin/cp * $DEPLOYPATH

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('config.php');
+include('functions.php');
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +36,7 @@ include('config.php');
 
               <div class="card-header">
                 <center>
-                  <h2 class="text-cenetr">Restorent Booking</h2>
+                  <h2 class="text-cenetr">Restaurant Booking</h2>
                 </center>
                 <!-- <br>
               <h4 class="text-center">Login</h4> -->
@@ -47,32 +48,53 @@ include('config.php');
                 if (isset($_POST['login'])) {
                   extract($_POST);
 
-                  $username = mysqli_real_escape_string($con, $_POST['txtusername']);
-                  $Password = mysqli_real_escape_string($con, $_POST['password']);
-                  //   echo $mobile_number;
-                  $log = mysqli_query($con, "select * from usermaster where username='$username' and password='$Password'") or die(mysqli_error($connect));
-                  // echo $log;
-                  if (mysqli_num_rows($log) > 0) {
-                    $fetch = mysqli_fetch_array($log);
 
-                    $_SESSION['id'] = $fetch['userid'];
-                    $_SESSION['mobile_number'] = $fetch['contact'];
-                    $_SESSION['name'] = $fetch['name'];
-                    $_SESSION['usertype'] = $fetch['usertype'];
+                  $sss = "SELECT * FROM `usermaster` WHERE `totalorderamt` = 0 AND `usertype` = 'admin'";
 
-                    echo $_SESSION['usertype'];
+                  $ok1 = mysqli_query($con, $sss);
 
-                    echo "<script>";
-                    echo "alert('Login Successfull');";
-                    echo 'window.location.href="dashboard.php";';
-                    echo "</script>";
+                  if (mysqli_num_rows($ok1) > 0) {
+
+                    $username = mysqli_real_escape_string($con, $_POST['txtusername']);
+                    $Password = mysqli_real_escape_string($con, $_POST['password']);
+                    //   echo $mobile_number;
+                    $log = mysqli_query($con, "select * from usermaster where username='$username' and password='$Password'") or die(mysqli_error($connect));
+                    // echo $log;
+                    if (mysqli_num_rows($log) > 0) {
+
+                    $up = "UPDATE `usermaster` SET `totalorderamt`='0' WHERE `usertype` = 'admin'";
+                    $ok2 = mysqli_query($con, $up);
+                    
+
+
+                      $fetch = mysqli_fetch_array($log);
+
+                      $_SESSION['id'] = $fetch['userid'];
+                      $_SESSION['mobile_number'] = $fetch['contact'];
+                      $_SESSION['name'] = $fetch['name'];
+                      $_SESSION['usertype'] = $fetch['usertype'];
+
+                      echo $_SESSION['usertype'];
+                      setresorentActive($con);
+                      echo "<script>";
+                      // echo "alert('Login Successfull');";
+                      echo 'window.location.href="dashboard.php";';
+                      echo "</script>";
+                    } else {
+                      echo "<script>";
+                      echo "alert('Please Enter Correct Username Or Password ');";
+                      echo "</script>";
+                    }
                   } else {
-                    echo "<script>";
-                    echo "alert('Please Enter Correct Username Or Password ');";
-                    echo "</script>";
+                    echo "<script>
+	
+                          alert('Already login');
+                      
+                          window.location.href='index.php';
+                      
+                          </script>";
                   }
                 }
-
                 ?>
                 <form method="POST" class="needs-validation" novalidate="">
                   <div class="form-group">
