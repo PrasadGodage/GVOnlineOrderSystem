@@ -16,7 +16,7 @@
 
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
-	<title>Document</title>
+	<title>Login</title>
 
 </head>
 
@@ -97,7 +97,7 @@
 
 		</div>
 
-		<h1>Rajeshahi</h1>
+		<p class="container text-center"><a href="privacypolicy.php" target="_blank">Privacy policy</a> | <a href="">Return and Refund Policy</a> |<br> <a href="tandc.php">Terms And Condition</a></p>
 
 	</section>
 
